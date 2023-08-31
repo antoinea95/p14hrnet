@@ -14,7 +14,7 @@ export default function SelectInput({ name, label, control, errors, data, ...oth
         control={control} // Assurez-vous de passer correctement la prop control
         render={({ field, fieldState: error }) => (
           <>
-          <Select {...field} label={label} id={name}>
+          <Select {...field} label={label} id={name} size='small'>
             {data.map((item) => (
               <MenuItem key={item.value} value={item.value}>
                 {item.name}

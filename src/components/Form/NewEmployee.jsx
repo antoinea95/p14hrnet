@@ -7,16 +7,12 @@ import React from "react";
 import DatePicker from "./input/DatePicker";
 import Select from "./input/SelectInput";
 import SelectInput from "./input/SelectInput";
+import { department, states } from "../../utils/selectData";
+import AdressForm from "./AdressForm";
+import EmployeeForm from "./EmployeeForm";
 
-export default function NewEmployee() {
+export default function NewEmployee({setEmployees}) {
 
-const department = [
-    {name: "Sales", value: "sales"},
-    {name: "Marketing", value: "marketing"},
-    {name: "Engineering", value: "engineering"},
-    {name: "Human Resources", value: "human_resources"},
-    {name: "Legal", value: "legal"},
-]
   // Create a yup schema
   const schema = yup.object().shape({
     firstname: yup.string().required("Enter a firstname please"),
@@ -33,7 +29,24 @@ const department = [
         return value;
       })
       .required("Enter a start date please"),
-        department: yup.string().oneOf(["sales", "marketing", "engineering", "human_resources", "legal"]).label("department").required("select a department please")
+    department: yup
+      .string()
+      .label("department")
+      .required("select a department please"),
+    street: yup
+    .string()
+    .min(5, "Street must be at least 5 characters")
+    .required("Enter a street name please"),
+    city: yup
+    .string()
+    .required("Enter a city please"),
+    states: yup
+    .string()
+    .required("Select a state please"),
+    zip_code: yup
+    .number("Enter a valid zip code")
+    .min(5, "Enter a valid zip code")
+    .required("Enter a zip code please")
   });
 
   // importing react useForm
@@ -48,39 +61,43 @@ const department = [
     resolver: yupResolver(schema),
   });
 
-  const testform = (data) => {
-    console.log(data);
+  // Converting date
+  const convertDate = (date) => {
+
+  if(date !== null) {
+    const convertDate = new Date(date);
+    const day = convertDate.getDate().toString().padStart(2, "0");
+    const month = (convertDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = convertDate.getFullYear().toString();
+
+    const UsExpiration = `${year}-${month}-${day}`
+    return UsExpiration
+  } else {
+    return ""
+  }
+}
+
+  const handleAddEmployee = (data) => {
+    
+    const formatEmployee = {
+      ...data, 
+      dateofbirth: convertDate(data.dateofbirth),
+      dateofstart: convertDate(data.dateofstart)
+    }
+
+    setEmployees(prev => [...prev, formatEmployee]);
   };
 
   return (
-    <form onSubmit={handleSubmit(testform)}>
-      <Text
-        name="firstname"
-        label="Firstname"
-        control={control}
-        errors={errors}
-      />
-      <Text
-        name="lastname"
-        label="Lastname"
-        control={control}
-        errors={errors}
-      />
-      <DatePicker
-        name="dateofbirth"
-        label="Date of Birth"
-        control={control}
-        errors={errors}
-      />
-      <DatePicker
-        name="dateofstart"
-        label="Start Date"
-        control={control}
-        errors={errors}
-      />
-      <SelectInput name="department" label="Department" control={control} errors={errors} data={department} />
-
-      <Button type="submit">Envoyer</Button>
+    <article>
+    <form onSubmit={handleSubmit(handleAddEmployee)} className="form">
+      <h2 className="form-title"> Create an employee </h2>
+      <div className="form-container">
+      <EmployeeForm control={control} errors={errors} />
+      <AdressForm control={control} errors={errors}/>
+      </div>
+      <Button type="submit" variant="contained" color="tertiary">Envoyer</Button>
     </form>
+    </article>
   );
 }

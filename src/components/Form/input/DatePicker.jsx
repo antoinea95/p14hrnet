@@ -16,6 +16,7 @@ export default function DatePicker({ name, label, control, errors, ...others }) 
             render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MuiDatePicker
+                        
                         label={label}
                         value={value}  // Set the value prop to the current value or null
                         onChange={(newValue) => {

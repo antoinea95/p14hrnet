@@ -22,6 +22,7 @@ export default function Text({name, label, control, errors, ...others}) {
             error={error ? true : false}
             helperText={errorMessage}
             {...others}
+            size="small"
           />
         )}
       />
