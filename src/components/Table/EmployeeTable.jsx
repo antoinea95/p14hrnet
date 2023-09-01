@@ -2,6 +2,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
@@ -51,6 +52,7 @@ export default function EmployeeTable({ tableData }) {
         placeholder="Rechercher..."
         className="table-filter"
       />
+      <TableContainer>
       <Table>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -78,7 +80,7 @@ export default function EmployeeTable({ tableData }) {
           ))}
         </TableHead>
         <TableBody>
-          {table
+          {table.getRowModel().rows.length > 0 ? table
             .getRowModel()
             .rows.filter((row) => {
                 if(globalFilter !== null) {
@@ -103,9 +105,14 @@ export default function EmployeeTable({ tableData }) {
                   </TableCell>
                 ))}
               </TableRow>
-            ))}
+            )) : <TableRow>
+                <div className="table-empty">
+                    No employee
+                </div>
+                </TableRow>}
         </TableBody>
       </Table>
+      </TableContainer>
     </article>
   );
 }
