@@ -26,7 +26,8 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     color: "white",
-                    fontWeight: 700
+                    fontWeight: 700,
+                    minWidth: "1rem"
                 }
             }
         },

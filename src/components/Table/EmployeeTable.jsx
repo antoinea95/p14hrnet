@@ -1,17 +1,24 @@
 import {
+  Button,
+  MenuItem,
+  Select,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
 } from "@mui/material";
 import {
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import {PiArrowRightBold, PiArrowLeftBold, PiArrowLineLeftBold, PiArrowLineRightBold } from 'react-icons/pi';
+import {LiaChevronCircleUpSolid, LiaChevronCircleDownSolid} from 'react-icons/lia';
 import { useMemo, useState } from "react";
 import { tableColumns } from "./columns";
 
@@ -40,6 +47,7 @@ export default function EmployeeTable({ tableData }) {
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel()
   });
 
 
@@ -69,8 +77,8 @@ export default function EmployeeTable({ tableData }) {
                         header.getContext()
                       )}
                       {{
-                        asc: " 🔼",
-                        desc: " 🔽",
+                        asc: <LiaChevronCircleUpSolid style={{width: "100%"}} />,
+                        desc: <LiaChevronCircleDownSolid style={{width: "100%"}} />,
                       }[header.column.getIsSorted()] ?? null}
                     </div>
                   )}
@@ -113,6 +121,73 @@ export default function EmployeeTable({ tableData }) {
         </TableBody>
       </Table>
       </TableContainer>
+      <div className="table-pagination" >
+        <div className="table-pagination_controller">
+        <Button
+          variant="contained"
+          color="tertiary"
+          onClick={() => table.setPageIndex(0)}
+          disabled={!table.getCanPreviousPage()}
+        >
+          {'<<'}
+        </Button>
+        <Button
+          variant="contained"
+          color="tertiary"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          {'<'}
+        </Button>
+        <Button
+         variant="contained"
+         color="tertiary"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          {'>'}
+        </Button>
+        <Button
+         variant="contained"
+         color="tertiary"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+          disabled={!table.getCanNextPage()}
+        >
+          {'>>'}
+        </Button>
+        </div>
+        <span className="table-pagination_state">
+          Page {" "}
+          <strong>
+            {table.getState().pagination.pageIndex + 1} of{' '}
+            {table.getPageCount()}
+          </strong>
+        </span>
+       {table.getPageCount() > 0 && <div className="table-pagination_input">
+          Go to page:
+          <TextField
+            type="number"
+            size="small"
+            defaultValue={table.getState().pagination.pageIndex + 1}
+            onChange={e => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0
+              table.setPageIndex(page)
+            }}
+          />
+        <Select
+          value={table.getState().pagination.pageSize}
+          onChange={e => {
+            table.setPageSize(Number(e.target.value))
+          }}
+        >
+          {[10, 20, 30, 40, 50].map(pageSize => (
+            <MenuItem key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </MenuItem>
+          ))}
+        </Select>
+        </div>}
+      </div>
     </article>
   );
 }

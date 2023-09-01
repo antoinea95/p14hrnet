@@ -70,7 +70,7 @@ export default function NewEmployee({setEmployees}) {
     const month = (convertDate.getMonth() + 1).toString().padStart(2, "0");
     const year = convertDate.getFullYear().toString();
 
-    const UsExpiration = `${year}-${month}-${day}`
+    const UsExpiration = `${month}-${day}-${year}`
     return UsExpiration
   } else {
     return ""

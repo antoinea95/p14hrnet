@@ -78,11 +78,36 @@ body {
     gap: 1rem;
 }
 
+.table-header_cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+}
+
+.table-header_cell .react-icons {
+    margin-right: 0.5rem;
+}
+
 
 .table-empty {
     text-transform: uppercase;
     font-weight: 700;
     margin: 2rem;
+}
+
+.table-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.table-pagination .MuiButtonBase-root {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.5rem;
 }
 
 .MuiTableContainer-root {
@@ -110,7 +135,7 @@ body {
     background-color: rgba(229, 159, 113, 0.2);
 }
 
-.MuiTableRow-root .MuiTableCell-root {
+.MuiTableBody-root .MuiTableRow-root .MuiTableCell-root {
     border: none;
     font-weight: 700;
 }

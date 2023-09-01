@@ -1,43 +1,46 @@
 import { createColumnHelper} from "@tanstack/react-table"
+import {PiSignature, PiUserCircleFill, PiPlayFill, PiTagBold, PiMapPinLineBold, PiMapTrifoldFill} from 'react-icons/pi';
+import {LiaBirthdayCakeSolid, LiaCitySolid} from 'react-icons/lia';
+import {GiPostStamp} from 'react-icons/gi';
 
 const columnHelper = createColumnHelper();
 
 export const tableColumns = [
      columnHelper.accessor('firstname', {
-        header: () => "First Name",
+        header: () => <span className="table-header_cell"> <PiUserCircleFill /> First name</span>,
         cell: info => info.getValue(),
         filter: 'fuzzyText'
      }),
      columnHelper.accessor('lastname', {
-        header: () => "Last Name",
+        header: () => <span className="table-header_cell"> <PiSignature /> Last name</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('dateofbirth', {
-        header: () => "Birth Date",
+        header: () => <span className="table-header_cell"> <LiaBirthdayCakeSolid /> Birth date</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('dateofstart', {
-        header: () => "Start Date",
+        header: () => <span className="table-header_cell"> <PiPlayFill /> Start date</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('department', {
-        header: () => "Department",
+        header: () => <span className="table-header_cell"> <PiTagBold /> Department</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('street', {
-        header: () => "Street",
+        header: () =>  <span className="table-header_cell"> <PiMapPinLineBold /> Street</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('city', {
-        header: () => "City",
+        header: () =>  <span className="table-header_cell"> <LiaCitySolid /> City</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('states', {
-        header: () => "State",
+        header: () => <span className="table-header_cell"> <PiMapPinLineBold /> State</span>,
         cell: info => info.getValue()
      }),
      columnHelper.accessor('zip_code', {
-        header: () => "Zip Code",
+        header: () => <span className="table-header_cell"> <GiPostStamp /> Zip code</span>,
         cell: info => info.getValue()
      }),
 ]
