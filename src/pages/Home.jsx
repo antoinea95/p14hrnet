@@ -1,9 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import { useState } from "react";
 import Header from "../layout/Header";
 import NewEmployee from "../components/Form/NewEmployee";
 import EmployeeTable from "../components/Table/EmployeeTable";
 import { Button } from "@mui/material";
-
 
 export default function Home () {
 
@@ -13,19 +14,20 @@ export default function Home () {
     // Toggle between table and form
     const [isTableShow, setIsTableShow] = useState(false);
 
-    console.log(employees);
+    const [isShow, setIsShow] = useState(false);
 
 
     return (
         <>
             <Header />
-            <main className="home">
+            <main className="home">            
             <Button onClick={() => setIsTableShow(!isTableShow)} variant="contained" color="tertiary">
                 {isTableShow ? "Home" : "View current employees"}
             </Button>
             {
                 !isTableShow ? 
-                <NewEmployee setEmployees={setEmployees} /> : <EmployeeTable tableData={employees} />
+                <NewEmployee setEmployees={setEmployees} /> : 
+                <EmployeeTable tableData={employees} />
             }
             </main>
            

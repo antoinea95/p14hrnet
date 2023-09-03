@@ -114,9 +114,11 @@ export default function EmployeeTable({ tableData }) {
                 ))}
               </TableRow>
             )) : <TableRow>
+                <TableCell colSpan={9}>
                 <div className="table-empty">
                     No employee
                 </div>
+                </TableCell>
                 </TableRow>}
         </TableBody>
       </Table>
@@ -164,16 +166,6 @@ export default function EmployeeTable({ tableData }) {
           </strong>
         </span>
        {table.getPageCount() > 0 && <div className="table-pagination_input">
-          Go to page:
-          <TextField
-            type="number"
-            size="small"
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              table.setPageIndex(page)
-            }}
-          />
         <Select
           value={table.getState().pagination.pageSize}
           onChange={e => {

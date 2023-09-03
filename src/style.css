@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 body {
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
 }
 
 .header {
@@ -94,6 +94,16 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     margin: 2rem;
+    text-align: center;
+}
+
+.table-filter {
+    border: 2px solid #BA5A31;
+    font-family: 'Raleway', sans-serif;
+    padding: 1rem;
+    border-radius: 1rem;
+    float: right;
+    margin: 0.5rem 0;
 }
 
 .table-pagination {
@@ -101,13 +111,20 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 1rem auto;
-    padding: 1rem;
+
 }
 
 .table-pagination .MuiButtonBase-root {
     width: 2rem;
     height: 2rem;
     margin: 0.5rem;
+}
+
+.table-pagination_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .MuiTableContainer-root {
