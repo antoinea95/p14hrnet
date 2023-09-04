@@ -2,8 +2,7 @@ import SelectInput from "./input/SelectInput";
 import Text from "./input/Text";
 import { states } from "../../utils/selectData";
 
-export default function AdressForm({control, errors}) {
-
+export default function AdressForm({ control, errors }) {
   return (
     <section className="form-section">
       <h2 className="form-section_legend">Employee's Adress</h2>
