@@ -1,5 +1,5 @@
 import { createColumnHelper} from "@tanstack/react-table"
-import {PiSignature, PiUserCircleFill, PiPlayFill, PiTagBold, PiMapPinLineBold, PiMapTrifoldFill} from 'react-icons/pi';
+import {PiSignature, PiUserCircleFill, PiPlayFill, PiTagBold, PiMapPinLineBold} from 'react-icons/pi';
 import {LiaBirthdayCakeSolid, LiaCitySolid} from 'react-icons/lia';
 import {GiPostStamp} from 'react-icons/gi';
 

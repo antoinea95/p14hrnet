@@ -1,4 +1,3 @@
-import { useFormContext } from "react-hook-form";
 import SelectInput from "./input/SelectInput";
 import Text from "./input/Text";
 import { department } from "../../utils/selectData";

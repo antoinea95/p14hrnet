@@ -8,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
 import {
   flexRender,
@@ -17,17 +16,17 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {PiArrowRightBold, PiArrowLeftBold, PiArrowLineLeftBold, PiArrowLineRightBold } from 'react-icons/pi';
 import {LiaChevronCircleUpSolid, LiaChevronCircleDownSolid} from 'react-icons/lia';
 import { useMemo, useState } from "react";
 import { tableColumns } from "./columns";
 
 export default function EmployeeTable({ tableData }) {
 
-    // sort and search in table
+  // sort and search in table
   const [sorting, setSorting] = useState();
   const [globalFilter, setGlobalFilter] = useState(null);
-    // define table content
+
+  // define table content
   const data = useMemo(() => (tableData ? tableData : []), [tableData]);
   const columns = useMemo(() => tableColumns, [tableColumns]);
 
@@ -36,7 +35,7 @@ export default function EmployeeTable({ tableData }) {
     setGlobalFilter(e.target.value);
   };
 
-
+  // import tools to create table
   const table = useReactTable({
     data,
     columns,

@@ -1,13 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Text from "./input/Text";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import DatePicker from "./input/DatePicker";
-import Select from "./input/SelectInput";
-import SelectInput from "./input/SelectInput";
-import { department, states } from "../../utils/selectData";
 import AdressForm from "./AdressForm";
 import EmployeeForm from "./EmployeeForm";
 import { Modal } from "@antoinea95/modal-component-hrnet";
@@ -54,7 +49,6 @@ export default function NewEmployee({setEmployees}) {
 
   // importing react useForm
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
@@ -80,15 +74,20 @@ export default function NewEmployee({setEmployees}) {
   }
 }
 
+  // submit form function
   const handleAddEmployee = (data) => {
     
+    // format date
     const formatEmployee = {
       ...data, 
       dateofbirth: convertDate(data.dateofbirth),
       dateofstart: convertDate(data.dateofstart)
     }
 
+    // stock employee
     setEmployees(prev => [...prev, formatEmployee]);
+    
+    // display modal and reset form
     setIsShow(true);
     reset();
   };

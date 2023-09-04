@@ -14,9 +14,6 @@ export default function Home () {
     // Toggle between table and form
     const [isTableShow, setIsTableShow] = useState(false);
 
-    const [isShow, setIsShow] = useState(false);
-
-
     return (
         <>
             <Header />
