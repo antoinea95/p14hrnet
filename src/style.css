@@ -49,10 +49,13 @@ body {
     width: fit-content;
     padding: 0 2rem 2rem 2rem;
     margin: 2rem auto;
+    width: 95%;
+    max-width: 70vw;
 }
 
 .form-title {
     text-transform: uppercase;
+    text-align: center;
 }
 
 .form-container {
@@ -100,10 +103,11 @@ body {
 .table-filter {
     border: 2px solid #BA5A31;
     font-family: 'Raleway', sans-serif;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1rem;
     float: right;
     margin: 0.5rem 0;
+    max-width: 5rem;
 }
 
 .table-pagination {
@@ -131,6 +135,7 @@ body {
     border-radius: 1rem;
     margin: 1rem auto;
     box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
+    width: 95vw!important;
 }
 
 .MuiTableHead-root {
@@ -155,5 +160,14 @@ body {
 .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root {
     border: none;
     font-weight: 700;
+}
+
+@media screen and (max-width:700px) {
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin: 2rem auto;
+    }
 }
 
